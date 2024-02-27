@@ -35,16 +35,10 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (!IsOnWall() || IsGrounded()) {
-            rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
-        }
+        rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
     }
     private bool IsGrounded()
     {
         return Physics2D.OverlapBox(feetPosition.position, new Vector2(0.1f, 0.1f), 0f, groundLayer);
-    }
-    private bool IsOnWall()
-    {
-        return Physics2D.OverlapBox(transform.position, new Vector2(1.2f, 1f), 0f, groundLayer);
     }
 }
