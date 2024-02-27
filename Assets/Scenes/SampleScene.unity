@@ -153,9 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e38a1d562c98547b032b51276e58dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollingSpeed: 5
-  mainCamera: {fileID: 519420031}
-  secondMovingBackground: {fileID: 1943535355}
 --- !u!212 &224738077
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -489,6 +486,7 @@ MonoBehaviour:
   movingBackground1: {fileID: 1943535355}
   movingBackground2: {fileID: 224738075}
   mainCamera: {fileID: 519420031}
+  rollingSpeed: 10
 --- !u!1 &644488970
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,9 +618,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e38a1d562c98547b032b51276e58dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollingSpeed: 5
-  mainCamera: {fileID: 519420031}
-  secondMovingBackground: {fileID: 224738075}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
