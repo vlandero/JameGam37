@@ -21,16 +21,24 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalDirection;
     private Rigidbody2D rb;
+    private Animator animator;
+
+    private bool hasTire = true;
     // Start is called before the first frame update
     void Start()
     {      
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        StartCoroutine(SwitchTire());
     }
 
     // Update is called once per frame
     void Update()
     {
         horizontalDirection = Input.GetAxisRaw("Horizontal");
+
+        animator.SetFloat("Y", rb.velocity.y);
+        Debug.Log($"X: {rb.velocity.x} si Y: {rb.velocity.y}");
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -42,10 +50,12 @@ public class PlayerController : MonoBehaviour
         if (horizontalDirection >= 0 && !IsWallRight())
         {
             rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
+            animator.SetFloat("X", -rb.velocity.x);
         }
         if (horizontalDirection <= 0 && !IsWallLeft())
         {
             rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
+            animator.SetFloat("X", -rb.velocity.x);
         }
     }
     private bool IsGrounded()
@@ -54,10 +64,20 @@ public class PlayerController : MonoBehaviour
     }
     private bool IsWallLeft()
     {
-        return Physics2D.OverlapBox(leftPosition.position, new Vector2(0.1f, 0.98f), 0f, groundLayer);
+        return Physics2D.OverlapBox(leftPosition.position, new Vector2(0.15f, 0.58f), 0f, groundLayer);
     }
     private bool IsWallRight()
     {
-        return Physics2D.OverlapBox(rightPosition.position, new Vector2(0.1f, 0.98f), 0f, groundLayer);
+        return Physics2D.OverlapBox(rightPosition.position, new Vector2(0.15f, 0.58f), 0f, groundLayer);
+    }
+
+    IEnumerator SwitchTire()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5f);
+            hasTire = !hasTire;
+            animator.SetBool("hasTire", hasTire);
+        }
     }
 }
