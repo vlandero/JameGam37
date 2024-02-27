@@ -12,10 +12,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform feetPosition;
     [SerializeField]
-    private Transform leftPosition;
-    [SerializeField]
-    private Transform rightPosition;
-    [SerializeField]
     private LayerMask groundLayer;
     [SerializeField]
     private LayerMask obstacleLayer;
@@ -40,7 +36,7 @@ public class PlayerController : MonoBehaviour
         }
         if(Input.GetButtonDown("Stop Tire"))
         {
-
+            Debug.Log("Stop Tire");
         }
         horizontalDirection = Input.GetAxisRaw("Horizontal");
         bool isGrounded = IsGrounded();
@@ -56,13 +52,11 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        bool isWallLeft = IsWallLeft();
-        bool isWallRight = IsWallRight();
-        if (horizontalDirection >= 0 && !isWallRight)
+        if (horizontalDirection >= 0)
         {
             rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
         }
-        if (horizontalDirection <= 0 && !isWallLeft)
+        if (horizontalDirection <= 0)
         {
             rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
         }
@@ -97,14 +91,6 @@ public class PlayerController : MonoBehaviour
         }
         currentGround = null;
         return false;
-    }
-    private bool IsWallLeft()
-    {
-        return Physics2D.OverlapBox(leftPosition.position, new Vector2(0.1f, 0.98f), 0f, obstacleLayer);
-    }
-    private bool IsWallRight()
-    {
-        return Physics2D.OverlapBox(rightPosition.position, new Vector2(0.1f, 0.98f), 0f, obstacleLayer);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
