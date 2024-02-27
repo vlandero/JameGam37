@@ -37,27 +37,36 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
         }
-        else if (isGrounded)
-        {
-            if(currentGround != null)
-            {
-                this.transform.parent = currentGround;
-            }
-        }
         else
         {
-            this.transform.parent = null;
+            AttachToFloor(isGrounded);
         }
     }
     void FixedUpdate()
     {
-        if (horizontalDirection >= 0 && !IsWallRight())
+        bool isWallLeft = IsWallLeft();
+        bool isWallRight = IsWallRight();
+        if (horizontalDirection >= 0 && !isWallRight)
         {
             rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
         }
-        if (horizontalDirection <= 0 && !IsWallLeft())
+        if (horizontalDirection <= 0 && !isWallLeft)
         {
             rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
+        }
+    }
+    private void AttachToFloor(bool isGrounded)
+    {
+        if (isGrounded)
+        {
+            if (currentGround != null)
+            {
+                transform.parent = currentGround;
+            }
+        }
+        else
+        {
+            transform.parent = null;
         }
     }
     private bool IsGrounded()
