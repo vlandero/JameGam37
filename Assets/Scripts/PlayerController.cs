@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator animator;
 
-    private bool hasTire = true;
     private Transform currentGround;
     // Start is called before the first frame update
     void Start()
@@ -87,7 +86,7 @@ public class PlayerController : MonoBehaviour
     }
     private bool IsGrounded()
     {
-        Collider2D groundCol = Physics2D.OverlapBox(leftPosition.position, new Vector2(0.15f, 0.58f), 0f, groundLayer);
+        Collider2D groundCol = Physics2D.OverlapBox(feetPosition.position, new Vector2(0.15f, 0.58f), 0f, groundLayer);
         Collider2D obstacleCol = Physics2D.OverlapBox(feetPosition.position, new Vector2(0.15f, 0.58f), 0f, obstacleLayer);
         if (groundCol != null)
         {
