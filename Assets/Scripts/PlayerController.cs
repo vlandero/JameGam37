@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     private Transform currentGround;
-    // Start is called before the first frame update
+
     void Start()
     {      
         rb = GetComponent<Rigidbody2D>();
@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
         currentGround = null;
     }
    
-
     void Update()
     {
         if(Input.GetButtonDown("Switch Reality"))
@@ -47,10 +46,9 @@ public class PlayerController : MonoBehaviour
         bool isGrounded = IsGrounded();
 
         animator.SetFloat("Y", rb.velocity.y);
-        Debug.Log($"X: {rb.velocity.x} si Y: {rb.velocity.y}");
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
+            rb.AddForce(Vector2.up * jumpForce);
         }
         else
         {

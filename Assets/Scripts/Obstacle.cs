@@ -12,7 +12,7 @@ public abstract class Obstacle : MonoBehaviour
     protected BoxCollider2D boxCollider;
     protected SpriteRenderer spriteRenderer;
 
-    protected void Start()
+    protected virtual void Start()
     {
         mainCamera = Camera.main.GetComponent<MainCamera>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -22,7 +22,7 @@ public abstract class Obstacle : MonoBehaviour
         // we don't need to activate here because at the first update frame it will enter the screen area and it will activate if necessary
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         if(!isOnScreen && transform.position.x < mainCamera.transform.position.x + mainCamera.width / 2)
         {
