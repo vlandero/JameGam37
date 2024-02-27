@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     private float speed = 5f;
     [SerializeField]
     private float jumpForce = 300f;
-
     [SerializeField]
     private Transform feetPosition;
     [SerializeField]
@@ -20,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private LayerMask groundLayer;
     [SerializeField]
     private LayerMask obstacleLayer;
+    [SerializeField]
+    private ObstacleManager obstacleManager;
 
     private float horizontalDirection;
     private Rigidbody2D rb;
@@ -32,6 +33,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetButtonDown("Switch Reality"))
+        {
+            Debug.Log("Switch Reality");
+            obstacleManager.SwitchReality();
+        }
+        if(Input.GetButtonDown("Stop Tire"))
+        {
+
+        }
         horizontalDirection = Input.GetAxisRaw("Horizontal");
         bool isGrounded = IsGrounded();
 

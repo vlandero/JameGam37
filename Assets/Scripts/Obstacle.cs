@@ -4,15 +4,22 @@ using UnityEngine;
 
 public abstract class Obstacle : MonoBehaviour
 {
+    [SerializeField] protected bool isActive;
+
     protected MainCamera mainCamera;
-    protected bool isActive;
     protected bool isOnScreen;
+
+    protected BoxCollider2D boxCollider;
+    protected SpriteRenderer spriteRenderer;
 
     protected void Start()
     {
         mainCamera = Camera.main.GetComponent<MainCamera>();
-        isActive = false;
+        boxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         isOnScreen = false;
+        Deactivate();
+        // we don't need to activate here because at the first update frame it will enter the screen area and it will activate if necessary
     }
 
     protected void Update()
@@ -28,10 +35,15 @@ public abstract class Obstacle : MonoBehaviour
         return isActive;
     }
 
+    public void SwitchReality()
+    {
+        SetActive(!isActive);
+    }
+
     public void SetActive(bool active)
     {
         isActive = active;
-        if(isActive)
+        if(isActive && isOnScreen)
         {
             Activate();
         }
@@ -44,16 +56,23 @@ public abstract class Obstacle : MonoBehaviour
     protected void EnteredScreenArea()
     {
         isOnScreen = true;
-        Debug.Log("EnteredScreenArea");
+        if(isActive)
+        {
+            Activate();
+        }
     }
 
     virtual protected void Deactivate()
-    { 
-    
+    {
+        var color = spriteRenderer.color;
+        spriteRenderer.color = new Color(color.r, color.g, color.b, .5f);
+        boxCollider.enabled = false;
     }
 
     virtual protected void Activate()
     {
-
+        var color = spriteRenderer.color;
+        spriteRenderer.color = new Color(color.r, color.g, color.b, 1);
+        boxCollider.enabled = true;
     }
 }
