@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Transform feetPosition;
     [SerializeField]
+    private Transform leftPosition;
+    [SerializeField]
+    private Transform rightPosition;
+    [SerializeField]
     private LayerMask groundLayer;
 
     private float horizontalDirection;
@@ -35,10 +39,25 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
+        if (horizontalDirection >= 0 && !IsWallRight())
+        {
+            rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
+        }
+        if (horizontalDirection <= 0 && !IsWallLeft())
+        {
+            rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
+        }
     }
     private bool IsGrounded()
     {
-        return Physics2D.OverlapBox(feetPosition.position, new Vector2(0.1f, 0.1f), 0f, groundLayer);
+        return Physics2D.OverlapBox(feetPosition.position, new Vector2(0.98f, 0.1f), 0f, groundLayer);
+    }
+    private bool IsWallLeft()
+    {
+        return Physics2D.OverlapBox(leftPosition.position, new Vector2(0.1f, 0.98f), 0f, groundLayer);
+    }
+    private bool IsWallRight()
+    {
+        return Physics2D.OverlapBox(rightPosition.position, new Vector2(0.1f, 0.98f), 0f, groundLayer);
     }
 }
