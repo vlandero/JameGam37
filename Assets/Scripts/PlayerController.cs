@@ -84,9 +84,15 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         Collider2D groundCol = Physics2D.OverlapBox(feetPosition.position, new Vector2(0.98f, 0.1f), 0f, groundLayer);
-        if(groundCol != null)
+        Collider2D obstacleCol = Physics2D.OverlapBox(feetPosition.position, new Vector2(0.98f, 0.1f), 0f, obstacleLayer);
+        if (groundCol != null)
         {
             currentGround = groundCol.transform;
+            return true;
+        }
+        else if (obstacleCol != null)
+        {
+            currentGround = obstacleCol.transform;
             return true;
         }
         currentGround = null;
