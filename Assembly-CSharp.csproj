@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\MainCamera.cs" />
+    <Compile Include="Assets\Scripts\Obstacle.cs" />
     <Compile Include="Assets\Scripts\MovingBackground.cs" />
     <Compile Include="Assets\Scripts\InitializeBackgrounds.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />

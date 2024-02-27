@@ -21,20 +21,32 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalDirection;
     private Rigidbody2D rb;
-    // Start is called before the first frame update
+    private Transform currentGround;
     void Start()
     {      
         rb = GetComponent<Rigidbody2D>();
+        currentGround = null;
     }
 
-    // Update is called once per frame
     void Update()
     {
         horizontalDirection = Input.GetAxisRaw("Horizontal");
+        bool isGrounded = IsGrounded();
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
+        }
+        else if (isGrounded)
+        {
+            if(currentGround != null)
+            {
+                this.transform.parent = currentGround;
+            }
+        }
+        else
+        {
+            this.transform.parent = null;
         }
     }
     void FixedUpdate()
@@ -50,7 +62,14 @@ public class PlayerController : MonoBehaviour
     }
     private bool IsGrounded()
     {
-        return Physics2D.OverlapBox(feetPosition.position, new Vector2(0.98f, 0.1f), 0f, groundLayer);
+        Collider2D groundCol = Physics2D.OverlapBox(feetPosition.position, new Vector2(0.98f, 0.1f), 0f, groundLayer);
+        if(groundCol != null)
+        {
+            currentGround = groundCol.transform;
+            return true;
+        }
+        currentGround = null;
+        return false;
     }
     private bool IsWallLeft()
     {
