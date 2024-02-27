@@ -20,12 +20,18 @@ public class PlayerController : MonoBehaviour
 
     private float horizontalDirection;
     private Rigidbody2D rb;
+    private Animator animator;
+
+    private bool hasTire = true;
     private Transform currentGround;
+    // Start is called before the first frame update
     void Start()
     {      
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         currentGround = null;
     }
+   
 
     void Update()
     {
@@ -41,6 +47,8 @@ public class PlayerController : MonoBehaviour
         horizontalDirection = Input.GetAxisRaw("Horizontal");
         bool isGrounded = IsGrounded();
 
+        animator.SetFloat("Y", rb.velocity.y);
+        Debug.Log($"X: {rb.velocity.x} si Y: {rb.velocity.y}");
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
@@ -55,10 +63,12 @@ public class PlayerController : MonoBehaviour
         if (horizontalDirection >= 0)
         {
             rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
+            animator.SetFloat("X", -rb.velocity.x);
         }
         if (horizontalDirection <= 0)
         {
             rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
+            animator.SetFloat("X", -rb.velocity.x);
         }
     }
     private void AttachToFloor(bool isGrounded)
@@ -77,8 +87,8 @@ public class PlayerController : MonoBehaviour
     }
     private bool IsGrounded()
     {
-        Collider2D groundCol = Physics2D.OverlapBox(feetPosition.position, new Vector2(0.98f, 0.1f), 0f, groundLayer);
-        Collider2D obstacleCol = Physics2D.OverlapBox(feetPosition.position, new Vector2(0.98f, 0.1f), 0f, obstacleLayer);
+        Collider2D groundCol = Physics2D.OverlapBox(leftPosition.position, new Vector2(0.15f, 0.58f), 0f, groundLayer);
+        Collider2D obstacleCol = Physics2D.OverlapBox(feetPosition.position, new Vector2(0.15f, 0.58f), 0f, obstacleLayer);
         if (groundCol != null)
         {
             currentGround = groundCol.transform;
