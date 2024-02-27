@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private Transform rightPosition;
     [SerializeField]
     private LayerMask groundLayer;
+    [SerializeField]
+    private LayerMask obstacleLayer;
 
     private float horizontalDirection;
     private Rigidbody2D rb;
@@ -82,10 +84,22 @@ public class PlayerController : MonoBehaviour
     }
     private bool IsWallLeft()
     {
-        return Physics2D.OverlapBox(leftPosition.position, new Vector2(0.1f, 0.98f), 0f, groundLayer);
+        return Physics2D.OverlapBox(leftPosition.position, new Vector2(0.1f, 0.98f), 0f, obstacleLayer);
     }
     private bool IsWallRight()
     {
-        return Physics2D.OverlapBox(rightPosition.position, new Vector2(0.1f, 0.98f), 0f, groundLayer);
+        return Physics2D.OverlapBox(rightPosition.position, new Vector2(0.1f, 0.98f), 0f, obstacleLayer);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("loss"))
+        {
+            Debug.Log("Game Over");
+        }
+        else if (collision.CompareTag("end"))
+        {
+            Debug.Log("You Win");
+        }
     }
 }
