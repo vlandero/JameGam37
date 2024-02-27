@@ -21,8 +21,8 @@ public class InitializeBackgrounds : MonoBehaviour
         movingBackground1.transform.position = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, 0, 0);
         movingBackground2.transform.position = movingBackground1.transform.position + new Vector3(backgroundSpriteWidth, 0, 0);
 
-        floor1.transform.position = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, -2.8f, 0);
-        floor2.transform.position = floor1.transform.position + new Vector3(floorSpriteWidth, 0, 0);
+        floor1.transform.localPosition = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, -2.8f, 0);
+        floor2.transform.localPosition = floor1.transform.localPosition + new Vector3(floorSpriteWidth, 0, 0);
     }
 
     private void Start()
@@ -57,17 +57,17 @@ public class InitializeBackgrounds : MonoBehaviour
     private void MoveFloors()
     {
         Vector3 movement = Vector2.left * rollingSpeed * Time.deltaTime;
-        floor1.transform.position += movement;
-        floor2.transform.position += movement;
+        floor1.transform.localPosition += movement;
+        floor2.transform.localPosition += movement;
 
         if (floor1.transform.position.x + floorSpriteWidth < mainCamera.transform.position.x - mainCamera.width / 5)
         {
-            floor1.transform.position += new Vector3(floorSpriteWidth * 2, 0, 0);
+            floor1.transform.localPosition += new Vector3(floorSpriteWidth * 2, 0, 0);
         }
 
         if (floor2.transform.position.x + floorSpriteWidth < mainCamera.transform.position.x - mainCamera.width / 5)
         {
-            floor2.transform.position += new Vector3(floorSpriteWidth * 2, 0, 0);
+            floor2.transform.localPosition += new Vector3(floorSpriteWidth * 2, 0, 0);
         }
     }
 
