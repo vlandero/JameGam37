@@ -5,14 +5,19 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
     [SerializeField]
-    float speed;
+    private float speed;
+
+    private float basicSpeed;
 
     float textureWidth;
     // Start is called before the first frame update
     void Start()
     {
+        basicSpeed = speed;
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         textureWidth = sprite.texture.width * transform.localScale.x/ sprite.pixelsPerUnit;
+        ButtonHighlight.highlightOn += () => this.speed = 0;
+        ButtonHighlight.highlightOff += () => this.speed = basicSpeed;
     }
 
     // Update is called once per frame
