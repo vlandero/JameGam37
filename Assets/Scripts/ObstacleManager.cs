@@ -8,6 +8,7 @@ public class ObstacleManager : MonoBehaviour
     void Start()
     {
         obstacles = FindObjectsOfType<Obstacle>();
+        Debug.Log(obstacles.Length);
     }
 
     public void SwitchReality()

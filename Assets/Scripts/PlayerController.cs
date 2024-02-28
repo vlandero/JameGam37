@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float speed = 5f;
     [SerializeField]
-    private float jumpForce = 300f;
+    private float jumpForce = 3f;
     [SerializeField]
     private Transform feetPosition;
     [SerializeField]
@@ -21,20 +21,21 @@ public class PlayerController : MonoBehaviour
     private float horizontalDirection;
     private Rigidbody2D rb;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     private Transform currentGround;
-    // Start is called before the first frame update
+
     void Start()
     {      
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         currentGround = null;
     }
    
-
     void Update()
     {
-        if(Input.GetButtonDown("Switch Reality"))
+        if (Input.GetButtonDown("Switch Reality"))
         {
             Debug.Log("Switch Reality");
             obstacleManager.SwitchReality();
@@ -47,10 +48,9 @@ public class PlayerController : MonoBehaviour
         bool isGrounded = IsGrounded();
 
         animator.SetFloat("Y", rb.velocity.y);
-        Debug.Log($"X: {rb.velocity.x} si Y: {rb.velocity.y}");
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         else
         {
@@ -86,16 +86,10 @@ public class PlayerController : MonoBehaviour
     }
     private bool IsGrounded()
     {
-        Collider2D groundCol = Physics2D.OverlapBox(feetPosition.position, new Vector2(0.15f, 0.58f), 0f, groundLayer);
-        Collider2D obstacleCol = Physics2D.OverlapBox(feetPosition.position, new Vector2(0.15f, 0.58f), 0f, obstacleLayer);
-        if (groundCol != null)
+        RaycastHit2D hit = Physics2D.Raycast(feetPosition.position, Vector2.down, 0.1f, groundLayer | obstacleLayer);
+        if (hit.collider)
         {
-            currentGround = groundCol.transform;
-            return true;
-        }
-        else if (obstacleCol != null)
-        {
-            currentGround = obstacleCol.transform;
+            currentGround = hit.transform;
             return true;
         }
         currentGround = null;
