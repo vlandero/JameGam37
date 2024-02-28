@@ -95,16 +95,4 @@ public class PlayerController : MonoBehaviour
         currentGround = null;
         return false;
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("loss"))
-        {
-            Debug.Log("Game Over");
-        }
-        else if (collision.CompareTag("end"))
-        {
-            Debug.Log("You Win");
-        }
-    }
 }

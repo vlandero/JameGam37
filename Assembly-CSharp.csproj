@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\UI\MainMenu.cs" />
     <Compile Include="Assets\Scripts\ObstacleManager.cs" />
     <Compile Include="Assets\Scripts\StaticObstacle.cs" />
+    <Compile Include="Assets\Scripts\PlayerEnd.cs" />
     <Compile Include="Assets\Scripts\MovingBackground.cs" />
     <Compile Include="Assets\Scripts\UI\ButtonHighlight.cs" />
     <Compile Include="Assets\Scripts\InitializeBackgrounds.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Scripts\UI\SavedData.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\UI\Parallax.cs" />
+    <Compile Include="Assets\Scripts\UI\WinLossMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
