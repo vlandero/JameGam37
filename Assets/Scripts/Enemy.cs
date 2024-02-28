@@ -43,16 +43,23 @@ public class Enemy : Obstacle
 
     private void RandomJump()
     {
-        if(Random.Range(0f, 100f) < jumpProbability && IsGrounded())
+        if(IsGrounded())
         {
-            Debug.Log("Jumping");
-            rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
+            if(Random.Range(0f, 100f) < jumpProbability)
+            {
+                Debug.Log("Jumping");
+                rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
+            }
         }
     }
 
     private bool IsGrounded()
     {
-        Collider2D groundCol = Physics2D.OverlapBox(feetPosition.position, new Vector2(0.1f, 0.1f), 0f, groundLayer);
-        return groundCol != null;
+        RaycastHit2D hit = Physics2D.Raycast(feetPosition.position, Vector2.down, 0.1f, groundLayer);
+        if (hit.collider)
+        {
+            return true;
+        }
+        return false;
     }
 }
