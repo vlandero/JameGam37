@@ -14,6 +14,7 @@ public class Enemy : Obstacle
     private Animator animator;
     private Rigidbody2D rb;
     private float lastJumpTime;
+    private Vector2 lastVelocity;
 
     protected override void Start()
     {
@@ -41,6 +42,8 @@ public class Enemy : Obstacle
         base.Deactivate();
         rb.isKinematic = true;
         animator.enabled = false;
+        lastVelocity = rb.velocity;
+        rb.velocity = Vector2.zero;
     }
 
     protected override void Activate()
@@ -48,6 +51,7 @@ public class Enemy : Obstacle
         base.Activate();
         rb.isKinematic = false;
         animator.enabled = true;
+        rb.velocity = lastVelocity;
     }
 
     private void Move()
