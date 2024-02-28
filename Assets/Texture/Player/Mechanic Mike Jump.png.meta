@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 95b6a18d00166b74a964acc90bbe28d0
+guid: a62eee9dc8bae1447a0f971f3cbaa3b6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -132,11 +132,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mechanic Mike Jump NoTire_0
+      name: Mechanic Mike Jump_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23d3b4ff2ec353e4f87a325ded5e5fa9
-      internalID: 809557317
+      spriteID: dd472c33a2a982d4cb63a7d8e8a0eb19
+      internalID: -600395839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mechanic Mike Jump NoTire_1
+      name: Mechanic Mike Jump_1
       rect:
         serializedVersion: 2
         x: 80
@@ -171,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 152fa9f65f746fe489da04c35520a65e
-      internalID: -1088004923
+      spriteID: 4ceb254b50db8f24eaf80714f592c6fc
+      internalID: -360411608
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mechanic Mike Jump NoTire_2
+      name: Mechanic Mike Jump_2
       rect:
         serializedVersion: 2
         x: 160
@@ -192,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17f0acc7bd179984b8f7b9245cab2234
-      internalID: -2130237532
+      spriteID: 409b587e62e8f1542bcc1e5928bf65d9
+      internalID: 722584570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mechanic Mike Jump NoTire_3
+      name: Mechanic Mike Jump_3
       rect:
         serializedVersion: 2
         x: 240
@@ -213,14 +226,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36db3bfcf0fd72648adce27fff7ba0f1
-      internalID: -853920065
+      spriteID: 8b05f325cf30fdd468ee16883bae0a0c
+      internalID: -494707431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mechanic Mike Jump NoTire_4
+      name: Mechanic Mike Jump_4
       rect:
         serializedVersion: 2
         x: 320
@@ -234,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de5c18acd66ba524bbcb9b17c0199289
-      internalID: 2070048495
+      spriteID: da8a5f717de30f247a662c69ee047af5
+      internalID: 543028803
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mechanic Mike Jump NoTire_5
+      name: Mechanic Mike Jump_5
       rect:
         serializedVersion: 2
         x: 400
@@ -255,8 +268,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cfc0858b3f79f847962dc102b2fc2fc
-      internalID: -771038873
+      spriteID: 70bac2853fd934f418396cfc2f281f2a
+      internalID: -1745493113
       vertices: []
       indices: 
       edges: []
@@ -272,12 +285,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mechanic Mike Jump NoTire_0: 809557317
-      Mechanic Mike Jump NoTire_1: -1088004923
-      Mechanic Mike Jump NoTire_2: -2130237532
-      Mechanic Mike Jump NoTire_3: -853920065
-      Mechanic Mike Jump NoTire_4: 2070048495
-      Mechanic Mike Jump NoTire_5: -771038873
+      Mechanic Mike Jump_0: -600395839
+      Mechanic Mike Jump_1: -360411608
+      Mechanic Mike Jump_2: 722584570
+      Mechanic Mike Jump_3: -494707431
+      Mechanic Mike Jump_4: 543028803
+      Mechanic Mike Jump_5: -1745493113
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

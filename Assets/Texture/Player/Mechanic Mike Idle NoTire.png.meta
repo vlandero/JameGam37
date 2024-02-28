@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 002685627f450604db204b9ddfa914c5
+guid: ee55cb77fed9c9e4fbc23dc83fe4fd72
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -132,11 +132,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mechanic Mike Idle_0
+      name: Mechanic Mike Idle NoTire_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bddbd8c3ec91b42448522b201258a6a7
-      internalID: 1790144740
+      spriteID: b7e2931f91b79c043ab78658eb2216ea
+      internalID: -171396521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mechanic Mike Idle_1
+      name: Mechanic Mike Idle NoTire_1
       rect:
         serializedVersion: 2
         x: 80
@@ -171,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e177641278909c245beb9090d9b34c5d
-      internalID: -263658939
+      spriteID: 66edfc9c77a934741902b35e6c303b93
+      internalID: 1655731778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mechanic Mike Idle_2
+      name: Mechanic Mike Idle NoTire_2
       rect:
         serializedVersion: 2
         x: 160
@@ -192,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f113e7be32be37448a820c742272d23b
-      internalID: -540812838
+      spriteID: 3b729af03a4ad184ca3acf359d49cc47
+      internalID: -106601551
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mechanic Mike Idle_3
+      name: Mechanic Mike Idle NoTire_3
       rect:
         serializedVersion: 2
         x: 240
@@ -213,14 +226,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba4cb27196796a54aac28c115ebcbeb1
-      internalID: 1619032625
+      spriteID: 7ff233ec2c47c2f4e85e9209b10ae54c
+      internalID: -1850938524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mechanic Mike Idle_4
+      name: Mechanic Mike Idle NoTire_4
       rect:
         serializedVersion: 2
         x: 320
@@ -234,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75242e14bf711694db534499f9ec7c6c
-      internalID: 244124054
+      spriteID: 6f39a1d3587b5e043b142972912a5239
+      internalID: -2089189371
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mechanic Mike Idle_5
+      name: Mechanic Mike Idle NoTire_5
       rect:
         serializedVersion: 2
         x: 400
@@ -255,14 +268,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b819ca88ec3b41b4aacb934a06050e65
-      internalID: 1364235995
+      spriteID: ce3eca952120e0349b4b963e3454b502
+      internalID: -1128666336
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Mechanic Mike Idle_6
+      name: Mechanic Mike Idle NoTire_6
       rect:
         serializedVersion: 2
         x: 480
@@ -276,8 +289,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c17cae7fcf48e4348918a3d2609e679b
-      internalID: 1212770094
+      spriteID: acec6b99890ca98488b18d9018ee0de0
+      internalID: 2048944723
       vertices: []
       indices: 
       edges: []
@@ -293,13 +306,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Mechanic Mike Idle_0: 1790144740
-      Mechanic Mike Idle_1: -263658939
-      Mechanic Mike Idle_2: -540812838
-      Mechanic Mike Idle_3: 1619032625
-      Mechanic Mike Idle_4: 244124054
-      Mechanic Mike Idle_5: 1364235995
-      Mechanic Mike Idle_6: 1212770094
+      Mechanic Mike Idle NoTire_0: -171396521
+      Mechanic Mike Idle NoTire_1: 1655731778
+      Mechanic Mike Idle NoTire_2: -106601551
+      Mechanic Mike Idle NoTire_3: -1850938524
+      Mechanic Mike Idle NoTire_4: -2089189371
+      Mechanic Mike Idle NoTire_5: -1128666336
+      Mechanic Mike Idle NoTire_6: 2048944723
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
