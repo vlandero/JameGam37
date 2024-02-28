@@ -12,12 +12,12 @@ public class StaticObstacle : Obstacle
     {
         base.Update();
     }
-    protected override void Deactivate()
+    public override void Deactivate()
     {
         base.Deactivate();
     }
 
-    protected override void Activate()
+    public override void Activate()
     {
         base.Activate();
     }

@@ -344,7 +344,7 @@ MonoBehaviour:
   floor1: {fileID: 7527634357869725365}
   floor2: {fileID: 870634553841785839}
   obstacleBulk: {fileID: 1242065796119601268}
-  rollingSpeed: 2
+  rollingSpeed: 0
 --- !u!1 &1438133275900570585
 GameObject:
   m_ObjectHideFlags: 0

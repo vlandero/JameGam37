@@ -11,10 +11,11 @@ public class Enemy : Obstacle
     [SerializeField] private float jumpProbability = .5f;
     [SerializeField] private float jumpCooldown = 1f;
 
-    private Animator animator;
     private Rigidbody2D rb;
     private float lastJumpTime;
     private Vector2 lastVelocity;
+
+    [HideInInspector] public Animator animator;
 
     protected override void Start()
     {
@@ -37,7 +38,7 @@ public class Enemy : Obstacle
             }
         }
     }
-    protected override void Deactivate()
+    public override void Deactivate()
     {
         base.Deactivate();
         rb.isKinematic = true;
@@ -46,7 +47,7 @@ public class Enemy : Obstacle
         rb.velocity = Vector2.zero;
     }
 
-    protected override void Activate()
+    public override void Activate()
     {
         base.Activate();
         rb.isKinematic = false;
@@ -65,7 +66,6 @@ public class Enemy : Obstacle
         {
             if (Random.Range(0f, 100f) < jumpProbability)
             {
-                Debug.Log("Jumping");
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 lastJumpTime = Time.time;
                 animator.SetTrigger("Jump");

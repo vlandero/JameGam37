@@ -62,14 +62,14 @@ public abstract class Obstacle : MonoBehaviour
         }
     }
 
-    virtual protected void Deactivate()
+    virtual public void Deactivate()
     {
         var color = spriteRenderer.color;
         spriteRenderer.color = new Color(color.r, color.g, color.b, .5f);
         boxCollider.enabled = false;
     }
 
-    virtual protected void Activate()
+    virtual public void Activate()
     {
         var color = spriteRenderer.color;
         spriteRenderer.color = new Color(color.r, color.g, color.b, 1);

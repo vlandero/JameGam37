@@ -15,21 +15,20 @@ public class PlayerController : MonoBehaviour
     private LayerMask groundLayer;
     [SerializeField]
     private LayerMask obstacleLayer;
-    [SerializeField]
-    private ObstacleManager obstacleManager;
+
+    public ObstacleManager obstacleManager;
 
     private float horizontalDirection;
     private Rigidbody2D rb;
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
-
     private Transform currentGround;
+
+    public SpriteRenderer spriteRenderer;
 
     void Start()
     {      
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         currentGround = null;
     }
    

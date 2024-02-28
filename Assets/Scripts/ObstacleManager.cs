@@ -17,4 +17,12 @@ public class ObstacleManager : MonoBehaviour
             obstacle.SwitchReality();
         }
     }
+
+    public void DeactivateAllObjecets()
+    {
+        foreach(Obstacle obstacle in obstacles)
+        {
+            obstacle.SetActive(false);
+        }
+    }
 }
