@@ -1483,10 +1483,6 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6820457517199440777, guid: 4673e31119902bd4680be417ec2267eb, type: 3}
-      propertyPath: data
-      value: 
-      objectReference: {fileID: 11400000, guid: 8af9fd2bc12f157499a7ac1c555cdf89, type: 2}
-    - target: {fileID: 6820457517199440777, guid: 4673e31119902bd4680be417ec2267eb, type: 3}
       propertyPath: panel
       value: 
       objectReference: {fileID: 11429186}
