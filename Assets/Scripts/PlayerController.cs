@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -15,8 +16,22 @@ public class PlayerController : MonoBehaviour
     private LayerMask groundLayer;
     [SerializeField]
     private LayerMask obstacleLayer;
+    [SerializeField]
+    private InitializeBackgrounds panel;
 
     public ObstacleManager obstacleManager;
+
+    [SerializeField]
+    private float switchRealityCooldown = 5f;
+    [SerializeField]
+    private float stopTireCooldown = 5f;
+    [SerializeField]
+    private TextMeshProUGUI switchRealityText;
+    [SerializeField]
+    private TextMeshProUGUI stopTireText;
+
+    private float switchRealityTimer = 0f;
+    private float stopTireTimer = 0f;
 
     private float horizontalDirection;
     private Rigidbody2D rb;
@@ -34,14 +49,23 @@ public class PlayerController : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetButtonDown("Switch Reality"))
+        switchRealityTimer -= Time.deltaTime;
+        stopTireTimer -= Time.deltaTime;
+
+        stopTireText.text = "You can stop tire in: " + Mathf.Clamp(stopTireTimer, 0, stopTireCooldown).ToString("F2") + "s";
+        switchRealityText.text = "You can switch reality in: " + Mathf.Clamp(switchRealityTimer, 0, switchRealityCooldown).ToString("F2") + "s";
+        if (Input.GetButtonDown("Switch Reality") && switchRealityTimer <= 0f)
         {
             Debug.Log("Switch Reality");
             obstacleManager.SwitchReality();
+            switchRealityTimer = switchRealityCooldown;
         }
-        if(Input.GetButtonDown("Stop Tire"))
+        if (Input.GetButtonDown("Stop Tire") && stopTireTimer <= 0f)
         {
             Debug.Log("Stop Tire");
+            StopTire();
+            Invoke(nameof(StartTire), 2f);
+            stopTireTimer = stopTireCooldown;
         }
         horizontalDirection = Input.GetAxisRaw("Horizontal");
         bool isGrounded = IsGrounded();
@@ -55,6 +79,16 @@ public class PlayerController : MonoBehaviour
         {
             AttachToFloor(isGrounded);
         }
+    }
+    public void StopTire()
+    {
+        panel.currentRollingSpeed = 0;
+        panel.currentTireRollingSpeed = 0;
+    }
+    public void StartTire()
+    {
+        panel.currentRollingSpeed = panel.rollingSpeed;
+        panel.currentTireRollingSpeed = panel.tireRollingSpeed;
     }
     void FixedUpdate()
     {

@@ -63,7 +63,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.71716, y: 1.71716, z: 0.85858}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2854690545792956590}
@@ -216,7 +216,12 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 128
+  panel: {fileID: 0}
   obstacleManager: {fileID: 444739896636809557}
+  switchRealityCooldown: 5
+  stopTireCooldown: 10
+  switchRealityText: {fileID: 0}
+  stopTireText: {fileID: 0}
   spriteRenderer: {fileID: 5066224927358758074}
 --- !u!95 &7920700146154688669
 Animator:

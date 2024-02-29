@@ -57,7 +57,6 @@ public class PlayerEnd : MonoBehaviour
     }
     private void PlayKillAnimation()
     {
-        Debug.Log("Playing kill");
         playerController.spriteRenderer.color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 0);
         deathParticleSystem.Play();
     }
@@ -74,7 +73,7 @@ public class PlayerEnd : MonoBehaviour
     }
     public void StopTime()
     {
-        panel.rollingSpeed = 0;
+        playerController.StopTire();
         gameObject.SetActive(false);
         playerController.obstacleManager.DeactivateAllObjecets();
     }

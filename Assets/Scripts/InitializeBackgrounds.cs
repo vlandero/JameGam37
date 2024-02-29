@@ -12,6 +12,8 @@ public class InitializeBackgrounds : MonoBehaviour
     public float tireTranslate = 30;
     public float rollingSpeed = 0.5f;
     public float tireRollingSpeed = 0.5f;
+    public float currentRollingSpeed;
+    public float currentTireRollingSpeed;
     private float backgroundSpriteWidth;
     private float floorSpriteWidth;
     private float tireSpriteWidth;
@@ -23,7 +25,6 @@ public class InitializeBackgrounds : MonoBehaviour
         backgroundSpriteWidth = movingBackground1.GetComponent<SpriteRenderer>().bounds.size.x;
         floorSpriteWidth = floor1.GetComponent<SpriteRenderer>().bounds.size.x;
         tireSpriteWidth = tire1.GetComponent<SpriteRenderer>().bounds.size.x;
-        Debug.Log(tireSpriteWidth);
 
         movingBackground1.transform.position = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, 0, 0);
         movingBackground2.transform.position = movingBackground1.transform.position + new Vector3(backgroundSpriteWidth, 0, 0);
@@ -33,6 +34,9 @@ public class InitializeBackgrounds : MonoBehaviour
 
         tire1.transform.localPosition = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, 0.15f, 0);
         tire2.transform.localPosition = tire1.transform.localPosition + new Vector3(tireTranslate, 0, 0);
+
+        currentRollingSpeed = rollingSpeed;
+        currentTireRollingSpeed = tireRollingSpeed;
     }
 
     private void Start()
@@ -50,7 +54,7 @@ public class InitializeBackgrounds : MonoBehaviour
 
     private void MoveBackgrounds()
     {
-        Vector3 movement = Vector2.left * rollingSpeed * Time.deltaTime;
+        Vector3 movement = Vector2.left * currentRollingSpeed * Time.deltaTime;
         movingBackground1.transform.position += movement;
         movingBackground2.transform.position += movement;
 
@@ -67,7 +71,7 @@ public class InitializeBackgrounds : MonoBehaviour
 
     private void MoveFloors()
     {
-        Vector3 movement = Vector2.left * rollingSpeed * Time.deltaTime;
+        Vector3 movement = Vector2.left * currentRollingSpeed * Time.deltaTime;
         floor1.transform.localPosition += movement;
         floor2.transform.localPosition += movement;
 
@@ -84,7 +88,7 @@ public class InitializeBackgrounds : MonoBehaviour
 
     private void MoveTires()
     {
-        Vector3 movement = Vector2.left * tireRollingSpeed * Time.deltaTime;
+        Vector3 movement = Vector2.left * currentTireRollingSpeed * Time.deltaTime;
         tire1.transform.position += movement;
         tire2.transform.position += movement;
 
@@ -100,6 +104,6 @@ public class InitializeBackgrounds : MonoBehaviour
 
     private void MoveObstacles()
     {
-        obstacleBulk.transform.position += Vector3.left * rollingSpeed * Time.deltaTime;
+        obstacleBulk.transform.position += Vector3.left * currentRollingSpeed * Time.deltaTime;
     }
 }
