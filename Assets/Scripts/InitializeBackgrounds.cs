@@ -29,7 +29,7 @@ public class InitializeBackgrounds : MonoBehaviour
         movingBackground1.transform.position = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, 0, 0);
         movingBackground2.transform.position = movingBackground1.transform.position + new Vector3(backgroundSpriteWidth, 0, 0);
 
-        floor1.transform.localPosition = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, -2.8f, 0);
+        floor1.transform.localPosition = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, -3.2f, 0);
         floor2.transform.localPosition = floor1.transform.localPosition + new Vector3(floorSpriteWidth, 0, 0);
 
         tire1.transform.localPosition = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, 0.15f, 0);
