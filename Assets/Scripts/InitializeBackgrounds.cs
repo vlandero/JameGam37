@@ -6,10 +6,15 @@ public class InitializeBackgrounds : MonoBehaviour
     public GameObject movingBackground2;
     public GameObject floor1;
     public GameObject floor2;
+    public GameObject tire1;
+    public GameObject tire2;
     public GameObject obstacleBulk;
+    public float tireTranslate = 30;
     public float rollingSpeed = 0.5f;
+    public float tireRollingSpeed = 0.5f;
     private float backgroundSpriteWidth;
     private float floorSpriteWidth;
+    private float tireSpriteWidth;
     private MainCamera mainCamera;
 
     private void Awake()
@@ -17,12 +22,17 @@ public class InitializeBackgrounds : MonoBehaviour
         mainCamera = Camera.main.GetComponent<MainCamera>();
         backgroundSpriteWidth = movingBackground1.GetComponent<SpriteRenderer>().bounds.size.x;
         floorSpriteWidth = floor1.GetComponent<SpriteRenderer>().bounds.size.x;
+        tireSpriteWidth = tire1.GetComponent<SpriteRenderer>().bounds.size.x;
+        Debug.Log(tireSpriteWidth);
 
         movingBackground1.transform.position = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, 0, 0);
         movingBackground2.transform.position = movingBackground1.transform.position + new Vector3(backgroundSpriteWidth, 0, 0);
 
         floor1.transform.localPosition = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, -2.8f, 0);
         floor2.transform.localPosition = floor1.transform.localPosition + new Vector3(floorSpriteWidth, 0, 0);
+
+        tire1.transform.localPosition = new Vector3(mainCamera.transform.position.x - mainCamera.width / 2, 0.15f, 0);
+        tire2.transform.localPosition = tire1.transform.localPosition + new Vector3(tireTranslate, 0, 0);
     }
 
     private void Start()
@@ -35,6 +45,7 @@ public class InitializeBackgrounds : MonoBehaviour
         MoveBackgrounds();
         MoveFloors();
         MoveObstacles();
+        MoveTires();
     }
 
     private void MoveBackgrounds()
@@ -60,14 +71,30 @@ public class InitializeBackgrounds : MonoBehaviour
         floor1.transform.localPosition += movement;
         floor2.transform.localPosition += movement;
 
-        if (floor1.transform.position.x + floorSpriteWidth < mainCamera.transform.position.x - mainCamera.width / 5)
+        if (floor1.transform.position.x + floorSpriteWidth < mainCamera.transform.position.x - mainCamera.width/ 10)
         {
             floor1.transform.localPosition += new Vector3(floorSpriteWidth * 2, 0, 0);
         }
 
-        if (floor2.transform.position.x + floorSpriteWidth < mainCamera.transform.position.x - mainCamera.width / 5)
+        if (floor2.transform.position.x + floorSpriteWidth < mainCamera.transform.position.x - mainCamera.width / 10)
         {
             floor2.transform.localPosition += new Vector3(floorSpriteWidth * 2, 0, 0);
+        }
+    }
+
+    private void MoveTires()
+    {
+        Vector3 movement = Vector2.left * tireRollingSpeed * Time.deltaTime;
+        tire1.transform.position += movement;
+        tire2.transform.position += movement;
+
+        if (tire1.transform.position.x + tireSpriteWidth / 2 < mainCamera.transform.position.x - mainCamera.width / 2)
+        {
+            tire1.transform.localPosition += new Vector3(tireTranslate * 2, 0, 0);
+        }
+        if (tire2.transform.position.x + tireSpriteWidth / 2 < mainCamera.transform.position.x - mainCamera.width / 2)
+        {
+            tire2.transform.localPosition += new Vector3(tireTranslate * 2, 0, 0);
         }
     }
 
