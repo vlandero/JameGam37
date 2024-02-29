@@ -6,32 +6,27 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float speed = 5f;
-    [SerializeField]
-    private float jumpForce = 3f;
-    [SerializeField]
-    private Transform feetPosition;
-    [SerializeField]
-    private LayerMask groundLayer;
-    [SerializeField]
-    private LayerMask obstacleLayer;
-    [SerializeField]
-    private InitializeBackgrounds panel;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float airSpeed = 2f;
+    [SerializeField] private float jumpForce = 3f;
+    [SerializeField] private float stepHeight = 0.15f;
+    [SerializeField] private float stepCheckDistance = 0.3f;
+    [SerializeField] private Transform feetPosition;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask obstacleLayer;
+    [SerializeField] private InitializeBackgrounds panel;
 
     public ObstacleManager obstacleManager;
 
-    [SerializeField]
-    private float switchRealityCooldown = 5f;
-    [SerializeField]
-    private float stopTireCooldown = 5f;
-    [SerializeField]
-    private TextMeshProUGUI switchRealityText;
-    [SerializeField]
-    private TextMeshProUGUI stopTireText;
+    [SerializeField] private float switchRealityCooldown = 5f;
+    [SerializeField] private float stopTireCooldown = 5f;
+    [SerializeField] private TextMeshProUGUI switchRealityText;
+    [SerializeField] private TextMeshProUGUI stopTireText;
 
     private float switchRealityTimer = 0f;
     private float stopTireTimer = 0f;
+
+    private float currentSpeed;
 
     private float horizontalDirection;
     private Rigidbody2D rb;
@@ -44,6 +39,7 @@ public class PlayerController : MonoBehaviour
     {      
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        currentSpeed = speed;
         currentGround = null;
     }
    
@@ -56,13 +52,11 @@ public class PlayerController : MonoBehaviour
         switchRealityText.text = "You can switch reality in: " + Mathf.Clamp(switchRealityTimer, 0, switchRealityCooldown).ToString("F2") + "s";
         if (Input.GetButtonDown("Switch Reality") && switchRealityTimer <= 0f)
         {
-            Debug.Log("Switch Reality");
             obstacleManager.SwitchReality();
             switchRealityTimer = switchRealityCooldown;
         }
         if (Input.GetButtonDown("Stop Tire") && stopTireTimer <= 0f)
         {
-            Debug.Log("Stop Tire");
             StopTire();
             Invoke(nameof(StartTire), 2f);
             stopTireTimer = stopTireCooldown;
@@ -92,16 +86,23 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (horizontalDirection >= 0)
+        if(IsGrounded())
         {
-            rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
-            animator.SetFloat("X", -rb.velocity.x);
+            currentSpeed = speed;
         }
-        if (horizontalDirection <= 0)
+        else
         {
-            rb.velocity = new Vector2(horizontalDirection * speed, rb.velocity.y);
-            animator.SetFloat("X", -rb.velocity.x);
+            currentSpeed = airSpeed;
         }
+
+        rb.velocity = new Vector2(horizontalDirection * currentSpeed, rb.velocity.y);
+        animator.SetFloat("X", -rb.velocity.x);
+
+        if (IsGrounded() && horizontalDirection != 0)
+        {
+            CheckForStep();
+        }
+
     }
     private void AttachToFloor(bool isGrounded)
     {
@@ -119,7 +120,7 @@ public class PlayerController : MonoBehaviour
     }
     private bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(feetPosition.position, Vector2.down, 0.1f, groundLayer | obstacleLayer);
+        RaycastHit2D hit = Physics2D.Raycast(feetPosition.position, Vector2.down, 0.15f, groundLayer | obstacleLayer);
         if (hit.collider)
         {
             currentGround = hit.transform;
@@ -128,4 +129,21 @@ public class PlayerController : MonoBehaviour
         currentGround = null;
         return false;
     }
+
+    private void CheckForStep()
+    {
+        RaycastHit2D hitFront = Physics2D.Raycast(feetPosition.position + new Vector3(horizontalDirection * stepCheckDistance, 0, 0), Vector2.right, stepHeight + 0.1f, groundLayer | obstacleLayer);
+
+        if (hitFront && currentGround)
+        {
+            float yDifference = hitFront.transform.position.y + hitFront.transform.localScale.y / 2 - currentGround.transform.position.y - hitFront.transform.localScale.y / 2 + .05f;
+
+            if (yDifference > 0 && yDifference <= stepHeight)
+            {
+                rb.position = new Vector2(rb.position.x, rb.position.y + yDifference);
+            }
+        }
+    }
+
 }
+

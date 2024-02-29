@@ -210,9 +210,15 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
   feetPosition: {fileID: 6213719041991015840}
+  stepHeight: 0.15
+  stepCheckDistance: 0.3
   jumpProbability: 3
   jumpCooldown: 3
+  animator: {fileID: 0}
 --- !u!95 &3944713734579968221
 Animator:
   serializedVersion: 5
