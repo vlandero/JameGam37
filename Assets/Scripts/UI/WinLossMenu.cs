@@ -18,7 +18,8 @@ public class WinLossMenu : MonoBehaviour
     {
         string actualScene = SceneManager.GetActiveScene().name.ToString();
         string sceneName = "Level" + ((int)char.GetNumericValue(actualScene[5]) + 1);
-        if (SceneManager.GetSceneByName(sceneName).IsValid())
+        Debug.Log(sceneName);
+        if (SceneUtility.GetBuildIndexByScenePath(sceneName) != -1)
             SceneManager.LoadScene(sceneName);
         else
             SceneManager.LoadScene("MainMenu");

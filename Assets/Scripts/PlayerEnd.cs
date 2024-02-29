@@ -36,7 +36,8 @@ public class PlayerEnd : MonoBehaviour
             string actualScene = SceneManager.GetActiveScene().name.ToString();
             int nr = (int)char.GetNumericValue(actualScene[5]) + 1;
             string sceneName = "Level" + nr;
-            if (SceneManager.GetSceneByName(sceneName).IsValid())
+            Debug.Log(sceneName);
+            if (SceneUtility.GetBuildIndexByScenePath(sceneName) != -1)
             {
                 data.unlockedLevels[nr] = true;
             }
