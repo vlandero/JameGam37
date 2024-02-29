@@ -264,6 +264,8 @@ MonoBehaviour:
   panel: {fileID: 0}
   data: {fileID: 11400000, guid: 8af9fd2bc12f157499a7ac1c555cdf89, type: 2}
   deathParticleSystem: {fileID: 1216401803589169134}
+  playKillAnimationDelay: 0.2
+  loseDelay: 0.8
 --- !u!1 &3557579869218266136
 GameObject:
   m_ObjectHideFlags: 0

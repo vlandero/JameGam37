@@ -6,16 +6,13 @@ using UnityEngine.UI;
 
 public class PlayerEnd : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject winPanel;
-    [SerializeField]
-    private GameObject lossPanel;
-    [SerializeField]
-    private InitializeBackgrounds panel;
-    [SerializeField]
-    private SavedData data;
-    [SerializeField]
-    private ParticleSystem deathParticleSystem;
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private GameObject lossPanel;
+    [SerializeField] private InitializeBackgrounds panel;
+    [SerializeField] private SavedData data;
+    [SerializeField] private ParticleSystem deathParticleSystem;
+    [SerializeField] private float playKillAnimationDelay = .2f;
+    [SerializeField] private float loseDelay = .5f;
 
     private PlayerController playerController;
     private Color spriteColor;
@@ -51,8 +48,8 @@ public class PlayerEnd : MonoBehaviour
         if (collision.gameObject.CompareTag("enemy"))
         {
             collision.gameObject.GetComponent<Enemy>().animator.SetTrigger("Attack");
-            Invoke(nameof(PlayKillAnimation), .2f);
-            Invoke(nameof(Lose), .5f);
+            Invoke(nameof(PlayKillAnimation), playKillAnimationDelay);
+            Invoke(nameof(Lose), loseDelay);
         }
     }
     private void PlayKillAnimation()

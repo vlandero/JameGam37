@@ -129,7 +129,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7167332322574788395}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: d89f950aa1a3c1447a681cfe893ecd08, type: 2}
+  m_Material: {fileID: 6200000, guid: 32038f35ec6bc0441a69a94e31933e84, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -216,8 +216,8 @@ MonoBehaviour:
   feetPosition: {fileID: 6213719041991015840}
   stepHeight: 0.15
   stepCheckDistance: 0.3
-  jumpProbability: 3
-  jumpCooldown: 3
+  jumpProbability: 1
+  jumpCooldown: 1.8
   animator: {fileID: 0}
 --- !u!95 &3944713734579968221
 Animator:
