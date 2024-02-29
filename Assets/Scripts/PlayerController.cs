@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         currentSpeed = speed;
         currentGround = null;
+        animator.SetBool("hasTire", true);
     }
    
     void Update()
@@ -76,11 +77,13 @@ public class PlayerController : MonoBehaviour
     }
     public void StopTire()
     {
+        animator.SetBool("hasTire",false);
         panel.currentRollingSpeed = 0;
         panel.currentTireRollingSpeed = 0;
     }
     public void StartTire()
     {
+        animator.SetBool("hasTire", true);
         panel.currentRollingSpeed = panel.rollingSpeed;
         panel.currentTireRollingSpeed = panel.tireRollingSpeed;
     }
