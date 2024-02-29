@@ -7,12 +7,16 @@ public class Enemy : Obstacle
     [SerializeField] private float speed = 3f;
     [SerializeField] private float jumpForce = 3f;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private Transform feetPosition;
+    [SerializeField] private float stepHeight = 0.15f;
+    [SerializeField] private float stepCheckDistance = 0.3f;
     [SerializeField] private float jumpProbability = .5f;
     [SerializeField] private float jumpCooldown = 1f;
 
     private Rigidbody2D rb;
     private float lastJumpTime;
+    private Transform currentGround;
     private Vector2 lastVelocity;
 
     [HideInInspector] public Animator animator;
@@ -38,6 +42,15 @@ public class Enemy : Obstacle
             }
         }
     }
+
+    private void FixedUpdate()
+    {
+        if (IsGrounded())
+        {
+            CheckForStep();
+        }
+    }
+
     public override void Deactivate()
     {
         base.Deactivate();
@@ -75,11 +88,28 @@ public class Enemy : Obstacle
 
     private bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(feetPosition.position, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(feetPosition.position, Vector2.down, 0.15f, groundLayer | obstacleLayer);
         if (hit.collider)
         {
+            currentGround = hit.transform;
             return true;
         }
+        currentGround = null;
         return false;
+    }
+
+    private void CheckForStep()
+    {
+        RaycastHit2D hitFront = Physics2D.Raycast(feetPosition.position + new Vector3(rb.velocity.x * stepCheckDistance, 0, 0), Vector2.right, stepHeight + 0.1f, groundLayer | obstacleLayer);
+
+        if (hitFront && currentGround)
+        {
+            float yDifference = hitFront.transform.position.y + hitFront.transform.localScale.y / 2 - currentGround.transform.position.y - hitFront.transform.localScale.y / 2 + .05f;
+
+            if (yDifference > 0 && yDifference <= stepHeight)
+            {
+                rb.position = new Vector2(rb.position.x, rb.position.y + yDifference);
+            }
+        }
     }
 }
