@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         switchRealityTimer -= Time.deltaTime;
         stopTireTimer -= Time.deltaTime;
 
-        stopTireText.text = "You can stop tire in: " + Mathf.Clamp(stopTireTimer, 0, stopTireCooldown).ToString("F2") + "s";
+        stopTireText.text = "You can stop the tire in: " + Mathf.Clamp(stopTireTimer, 0, stopTireCooldown).ToString("F2") + "s";
         switchRealityText.text = "You can switch reality in: " + Mathf.Clamp(switchRealityTimer, 0, switchRealityCooldown).ToString("F2") + "s";
         if (Input.GetButtonDown("Switch Reality") && switchRealityTimer <= 0f)
         {
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
     }
     private void AttachToFloor(bool isGrounded)
     {
-        if (isGrounded)
+        if (isGrounded && rb.velocity.y <.1f)
         {
             if (currentGround != null)
             {
