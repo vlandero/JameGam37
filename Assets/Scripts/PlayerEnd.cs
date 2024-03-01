@@ -13,6 +13,7 @@ public class PlayerEnd : MonoBehaviour
     [SerializeField] private ParticleSystem deathParticleSystem;
     [SerializeField] private float playKillAnimationDelay = .2f;
     [SerializeField] private float loseDelay = .5f;
+    [SerializeField] AudioSource deathSound;
 
     private PlayerController playerController;
     private Color spriteColor;
@@ -66,8 +67,9 @@ public class PlayerEnd : MonoBehaviour
 
     public void Lose()
     {
+        deathSound.Play();
         lossPanel.SetActive(true);
-        StopTime();
+        Invoke(nameof(StopTime), .5f);
     }
     public void StopTime()
     {

@@ -13,6 +13,7 @@ public class Enemy : Obstacle
     [SerializeField] private float stepCheckDistance = 0.3f;
     [SerializeField] private float jumpProbability = .5f;
     [SerializeField] private float jumpCooldown = 1f;
+    [SerializeField] private AudioSource jumpSound;
 
     private Rigidbody2D rb;
     private float lastJumpTime;
@@ -79,6 +80,8 @@ public class Enemy : Obstacle
         {
             if (Random.Range(0f, 100f) < jumpProbability)
             {
+                jumpSound.time = 0.25f;
+                jumpSound.Play();
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 lastJumpTime = Time.time;
                 animator.SetTrigger("Jump");

@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InitializeBackgrounds panel;
     [SerializeField] private ParticleSystem noTireParticle;
     [SerializeField] private GameObject tireStopAnim;
+    [SerializeField] private AudioSource jumpSound;
+    [SerializeField] private AudioSource switchRealitySound;
+    [SerializeField] private AudioSource stopTireSound;
 
     public ObstacleManager obstacleManager;
 
@@ -55,11 +58,13 @@ public class PlayerController : MonoBehaviour
         switchRealityText.text = "You can switch reality in: " + Mathf.Clamp(switchRealityTimer, 0, switchRealityCooldown).ToString("F2") + "s";
         if (Input.GetButtonDown("Switch Reality") && switchRealityTimer <= 0f)
         {
+            switchRealitySound.Play();
             obstacleManager.SwitchReality();
             switchRealityTimer = switchRealityCooldown;
         }
         if (Input.GetButtonDown("Stop Tire") && stopTireTimer <= 0f)
         {
+            stopTireSound.Play();
             StopTire();
             Invoke(nameof(StartTire), 2f);
             stopTireTimer = stopTireCooldown;
@@ -70,6 +75,8 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("Y", rb.velocity.y);
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            jumpSound.time = 0.25f;
+            jumpSound.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         else
