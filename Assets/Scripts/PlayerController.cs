@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private InitializeBackgrounds panel;
+    [SerializeField] private ParticleSystem noTireParticle;
+    [SerializeField] private GameObject tireStopAnim;
 
     public ObstacleManager obstacleManager;
 
@@ -78,12 +80,16 @@ public class PlayerController : MonoBehaviour
     public void StopTire()
     {
         animator.SetBool("hasTire",false);
+        tireStopAnim.gameObject.SetActive(true);
+        noTireParticle.gameObject.SetActive(true);
         panel.currentRollingSpeed = 0;
         panel.currentTireRollingSpeed = 0;
     }
     public void StartTire()
     {
         animator.SetBool("hasTire", true);
+        tireStopAnim.gameObject.SetActive(false);
+        noTireParticle.gameObject.SetActive(false);
         panel.currentRollingSpeed = panel.rollingSpeed;
         panel.currentTireRollingSpeed = panel.tireRollingSpeed;
     }
