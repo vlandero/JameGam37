@@ -4878,6 +4878,7 @@ GameObject:
   - component: {fileID: 6017483282019174644}
   - component: {fileID: 835844476209010377}
   - component: {fileID: 6274426821704400779}
+  - component: {fileID: 7314955867872419}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5063,6 +5064,8 @@ MonoBehaviour:
   stopTireCooldown: 10
   switchRealityText: {fileID: 0}
   stopTireText: {fileID: 0}
+  coyoteTime: 0.25
+  jumpCooldown: 0.5
   spriteRenderer: {fileID: 5066224927358758074}
 --- !u!95 &7920700146154688669
 Animator:
@@ -5489,6 +5492,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &7314955867872419
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843927608986570212}
+  m_Enabled: 1
 --- !u!1 &3557579869218266136
 GameObject:
   m_ObjectHideFlags: 0

@@ -21936,7 +21936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2049070245408755568, guid: 2255d2ad9696a77438584e3e3fb9ca7e, type: 3}
       propertyPath: m_Color.a
-      value: 0.7019608
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2468378406707330752, guid: 2255d2ad9696a77438584e3e3fb9ca7e, type: 3}
       propertyPath: m_SpriteTilingProperty.drawMode
