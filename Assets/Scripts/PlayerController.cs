@@ -28,6 +28,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI switchRealityText;
     [SerializeField] private TextMeshProUGUI stopTireText;
 
+    [SerializeField] private float coyoteTime = 0.25f;
+    [SerializeField] private float jumpBufferTime = 0.25f;
+    [SerializeField] private float jumpCooldown = 0.25f;
+    private float coyoteTimeCounter;
+    private float jumpBufferCounter;
+    private bool isJumping = false;
+
     private float switchRealityTimer = 0f;
     private float stopTireTimer = 0f;
 
@@ -48,7 +55,7 @@ public class PlayerController : MonoBehaviour
         currentGround = null;
         animator.SetBool("hasTire", true);
     }
-   
+
     void Update()
     {
         switchRealityTimer -= Time.deltaTime;
@@ -56,6 +63,18 @@ public class PlayerController : MonoBehaviour
 
         stopTireText.text = "You can stop the tire in: " + Mathf.Clamp(stopTireTimer, 0, stopTireCooldown).ToString("F2") + "s";
         switchRealityText.text = "You can switch reality in: " + Mathf.Clamp(switchRealityTimer, 0, switchRealityCooldown).ToString("F2") + "s";
+
+        bool isGrounded = IsGrounded();
+
+        if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
         if (Input.GetButtonDown("Switch Reality") && switchRealityTimer <= 0f)
         {
             switchRealitySound.Play();
@@ -69,20 +88,42 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(StartTire), 2f);
             stopTireTimer = stopTireCooldown;
         }
+
         horizontalDirection = Input.GetAxisRaw("Horizontal");
-        bool isGrounded = IsGrounded();
 
         animator.SetFloat("Y", rb.velocity.y);
-        if (Input.GetButtonDown("Jump") && isGrounded)
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
+        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0 && !isJumping)
         {
             jumpSound.time = 0.25f;
             jumpSound.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            coyoteTimeCounter = 0;
+            jumpBufferCounter = 0;
+            Debug.Log(isJumping);
+            StartCoroutine(JumpCooldown());
         }
         else
         {
             AttachToFloor(isGrounded);
         }
+    }
+    private IEnumerator JumpCooldown()
+    {
+        Debug.Log("Setting isjumping true");
+        isJumping = true;
+        yield return new WaitForSeconds(jumpCooldown);
+        isJumping = false;
+        Debug.Log("Setting isjumping false");
     }
     public void StopTire()
     {

@@ -5063,6 +5063,7 @@ MonoBehaviour:
   stopTireCooldown: 10
   switchRealityText: {fileID: 0}
   stopTireText: {fileID: 0}
+  coyoteTime: 0.25
   spriteRenderer: {fileID: 5066224927358758074}
 --- !u!95 &7920700146154688669
 Animator:
