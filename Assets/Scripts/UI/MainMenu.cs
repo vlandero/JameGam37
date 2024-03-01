@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,12 +12,18 @@ public class MainMenu : MonoBehaviour
     private Button[] levelButtons;
     [SerializeField]
     private SavedData savedData;
+    [SerializeField] private TextMeshProUGUI congratsText;
 
     private void Awake()
     {
+        congratsText.gameObject.SetActive(false);
         for (int i = 0; i < levelButtons.Length; i++)
         {
             levelButtons[i].interactable = savedData.unlockedLevels[i+1];
+        }
+        if (savedData.unlockedLevels[levelButtons.Length] == true)
+        {
+            congratsText.gameObject.SetActive(true);
         }
         transform.GetChild(1).gameObject.SetActive(false);
         transform.GetChild(0).gameObject.SetActive(true);

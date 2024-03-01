@@ -29,10 +29,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI stopTireText;
 
     [SerializeField] private float coyoteTime = 0.25f;
-    [SerializeField] private float jumpBufferTime = 0.25f;
     [SerializeField] private float jumpCooldown = 0.25f;
     private float coyoteTimeCounter;
-    private float jumpBufferCounter;
     private bool isJumping = false;
 
     private float switchRealityTimer = 0f;
@@ -93,24 +91,14 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("Y", rb.velocity.y);
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && coyoteTimeCounter > 0 && !isJumping)
         {
-            jumpBufferCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferCounter -= Time.deltaTime;
-        }
-
-        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0 && !isJumping)
-        {
+            isJumping = true;
             jumpSound.time = 0.25f;
             jumpSound.Play();
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             coyoteTimeCounter = 0;
-            jumpBufferCounter = 0;
-            Debug.Log(isJumping);
             StartCoroutine(JumpCooldown());
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         else
         {
@@ -119,11 +107,8 @@ public class PlayerController : MonoBehaviour
     }
     private IEnumerator JumpCooldown()
     {
-        Debug.Log("Setting isjumping true");
-        isJumping = true;
         yield return new WaitForSeconds(jumpCooldown);
         isJumping = false;
-        Debug.Log("Setting isjumping false");
     }
     public void StopTire()
     {
