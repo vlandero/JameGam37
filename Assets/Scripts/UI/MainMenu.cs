@@ -18,19 +18,19 @@ public class MainMenu : MonoBehaviour
         {
             levelButtons[i].interactable = savedData.unlockedLevels[i+1];
         }
-        this.transform.GetChild(1).gameObject.SetActive(false);
-        this.transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void ShowLevels()
     {
-        this.transform.GetChild(0).gameObject.SetActive(false);
-        this.transform.GetChild(1).gameObject.SetActive(true);
+        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).gameObject.SetActive(true);
     }
     public void ShowStart()
     {
-        this.transform.GetChild(1).gameObject.SetActive(false);
-        this.transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(true);
     }
     public void PlayLevel(int levelNumber)
     {
@@ -39,7 +39,6 @@ public class MainMenu : MonoBehaviour
     }
     public void Quit()
     {
-        EditorApplication.ExitPlaymode();
         Application.Quit();
     }
 }
