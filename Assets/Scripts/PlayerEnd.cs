@@ -9,7 +9,6 @@ public class PlayerEnd : MonoBehaviour
     [SerializeField] private GameObject winPanel;
     [SerializeField] private GameObject lossPanel;
     [SerializeField] private InitializeBackgrounds panel;
-    [SerializeField] private SavedData data;
     [SerializeField] private ParticleSystem deathParticleSystem;
     [SerializeField] private float playKillAnimationDelay = .2f;
     [SerializeField] private float loseDelay = .5f;
@@ -40,7 +39,7 @@ public class PlayerEnd : MonoBehaviour
             Debug.Log(sceneName);
             if (SceneUtility.GetBuildIndexByScenePath(sceneName) != -1)
             {
-                data.unlockedLevels[nr] = true;
+                PlayerPrefs.SetInt("Level" + nr, 1);
             }
             Win();
         }

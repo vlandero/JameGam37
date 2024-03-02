@@ -10,18 +10,27 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField]
     private Button[] levelButtons;
-    [SerializeField]
-    private SavedData savedData;
     [SerializeField] private TextMeshProUGUI congratsText;
 
     private void Awake()
     {
+        PlayerPrefs.SetInt("Level0", 1);
+        PlayerPrefs.SetInt("Level1", 1);
+        if (PlayerPrefs.GetInt("Level2") == 0)
+        {
+            PlayerPrefs.SetInt("Level2", 0);
+        }
+        if (PlayerPrefs.GetInt("Level3") == 0)
+        {
+            PlayerPrefs.SetInt("Level3", 0);
+        }
+        PlayerPrefs.Save();
         congratsText.gameObject.SetActive(false);
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            levelButtons[i].interactable = savedData.unlockedLevels[i+1];
+            levelButtons[i].interactable = PlayerPrefs.GetInt("Level" + (i+1)) == 1;
         }
-        if (savedData.unlockedLevels[levelButtons.Length] == true)
+        if (PlayerPrefs.GetInt("Level3") == 1)
         {
             congratsText.gameObject.SetActive(true);
         }
