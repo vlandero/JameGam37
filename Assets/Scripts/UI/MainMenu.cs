@@ -24,13 +24,17 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("Level3", 0);
         }
+        if (PlayerPrefs.GetInt("LevelsCompleted") == 0)
+        {
+            PlayerPrefs.SetInt("Level3", 0);
+        }
         PlayerPrefs.Save();
         congratsText.gameObject.SetActive(false);
         for (int i = 0; i < levelButtons.Length; i++)
         {
             levelButtons[i].interactable = PlayerPrefs.GetInt("Level" + (i+1)) == 1;
         }
-        if (PlayerPrefs.GetInt("Level3") == 1)
+        if (PlayerPrefs.GetInt("LevelsCompleted") == 1)
         {
             congratsText.gameObject.SetActive(true);
         }

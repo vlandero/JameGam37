@@ -40,6 +40,7 @@ public class PlayerEnd : MonoBehaviour
             if (SceneUtility.GetBuildIndexByScenePath(sceneName) != -1)
             {
                 PlayerPrefs.SetInt("Level" + nr, 1);
+                PlayerPrefs.Save();
             }
             Win();
         }
