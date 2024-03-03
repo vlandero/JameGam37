@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
         }
         if (PlayerPrefs.GetInt("LevelsCompleted") == 0)
         {
-            PlayerPrefs.SetInt("Level3", 0);
+            PlayerPrefs.SetInt("LevelsCompleted", 0);
         }
         PlayerPrefs.Save();
         congratsText.gameObject.SetActive(false);
